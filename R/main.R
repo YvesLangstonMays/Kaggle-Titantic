@@ -1,8 +1,8 @@
 library(randomForest)
 
 # Reading the csv file and attaching the data frame
-data = read.csv("titanic/train.csv")
-test = read.csv("titanic/test.csv")
+data = read.csv("titanic_data/train.csv")
+test = read.csv("titanic_data/test.csv")
 attach(data)
 
 # Remove columns to improve model
@@ -10,6 +10,7 @@ data$Parch = NULL
 data$Embarked = NULL
 data$Fare = NULL
 data$Age = NULL
+data$Cabin = NULL
 
 # Removing na values
 data = na.omit(data)
@@ -18,7 +19,7 @@ data = na.omit(data)
 data$Survived = factor(data$Survived)
 
 # Random Forest model
-titanic.rfmodel = randomForest(Survived ~ ., ntree = 10000, mtry = 5, data = data)
+titanic.rfmodel = randomForest(Survived ~ ., ntree = 100000, mtry = 5, data = data)
 titanic.rfmodel
 
 predictions = predict(titanic.rfmodel, newdata = test)
