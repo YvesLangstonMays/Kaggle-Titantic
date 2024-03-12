@@ -11,7 +11,7 @@ attach(data)
 # Changing numeric to factor for classification
 data$Survived = factor(data$Survived)
 
-# Random Forest models
+# Random Forest model
 titanic.rfmodel = randomForest(Survived ~ ., ntree = 1000, mtry = 5, data = data)
 titanic.rfmodel
 
