@@ -5,14 +5,20 @@ data = read.csv("titanic/train.csv")
 test = read.csv("titanic/test.csv")
 attach(data)
 
+# Remove columns to improve model
+data$Parch = NULL
+data$Embarked = NULL
+data$Fare = NULL
+data$Age = NULL
+
 # Removing na values
-# data = na.omit(data)
+data = na.omit(data)
 
 # Changing numeric to factor for classification
 data$Survived = factor(data$Survived)
 
 # Random Forest model
-titanic.rfmodel = randomForest(Survived ~ ., ntree = 1000, mtry = 5, data = data)
+titanic.rfmodel = randomForest(Survived ~ ., ntree = 10000, mtry = 5, data = data)
 titanic.rfmodel
 
 predictions = predict(titanic.rfmodel, newdata = test)
