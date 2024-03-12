@@ -6,18 +6,18 @@ test = read.csv("titanic/test.csv")
 attach(data)
 
 # Removing na values
-data = na.omit(data)
+# data = na.omit(data)
 
 # Changing numeric to factor for classification
 data$Survived = factor(data$Survived)
 
 # Random Forest models
-titanic.rfmodel = randomForest(Survived ~ ., ntree = 6000, mtry = 5, data = data)
+titanic.rfmodel = randomForest(Survived ~ ., ntree = 1000, mtry = 5, data = data)
 titanic.rfmodel
 
 predictions = predict(titanic.rfmodel, newdata = test)
-prediction_results = data.frame(PassengerID = test$PassengerId, SurvivalPrediction = predictions)
-prediction_results
+prediction_results = data.frame(PassengerID = test$PassengerId, Survived = predictions)
 
+write.csv(prediction_results, "R/submission.csv", row.names=FALSE)
 
 
