@@ -6,10 +6,8 @@ test <- read.csv("titanic_data/test.csv")
 attach(data)
 
 
-
 # Remove columns to improve model
 data$Parch <- NULL
-data$Fare <- NULL
 data$Age <- NULL
 
 # Removing na values
