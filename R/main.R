@@ -20,8 +20,8 @@ summary(data)
 data$Survived <- factor(data$Survived)
 
 # Random Forest model, which is just a bootstrapped tree model
-# mtry = 5 nolint
-titanic.rfmodel <- randomForest(Survived ~ ., ntree = 10000, mtry = 5, data = data) # nolint
+# mtry = 5, importance true nolint
+titanic.rfmodel <- randomForest(Survived ~ ., ntree = 10000, mtry = 5, data = data, importance = TRUE) # nolint
 titanic.rfmodel
 
 predictions <- predict(titanic.rfmodel, newdata = test)
