@@ -19,7 +19,7 @@ summary(data)
 data$Survived <- factor(data$Survived)
 
 # Random Forest model, which is just a bootstrapped tree model
-# mtry = sqrt5, importance=T, 1000 trees, nodesize 30 nolint
+# mtry=sqrt5,importance=T, 1000 trees, nodesize 30
 titanic.rfmodel <- randomForest(Survived ~ ., ntree = 1000, mtry = sqrt(5), data = data, importance = TRUE, nodesize = 30) # nolint
 titanic.rfmodel
 
