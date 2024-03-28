@@ -10,7 +10,6 @@ data$Parch <- NULL
 data$Embarked <- NULL
 data$Fare <- NULL
 data$Age <- NULL
-data$Ticket <- NULL
 
 # Removing na values
 data <- na.omit(data)
@@ -19,10 +18,10 @@ data <- na.omit(data)
 data$Survived <- factor(data$Survived)
 
 # Random Forest model
-titanic.rfmodel <- randomForest(Survived ~ ., ntree = 10000, mtry = 5, data = data) # nolint
+titanic.rfmodel <- randomForest(Survived ~ ., ntree = 10000, mtry = 5, data = data)
 titanic.rfmodel
 
 predictions <- predict(titanic.rfmodel, newdata = test)
-prediction_results <- data.frame(PassengerID = test$PassengerId, Survived = predictions) # nolint
+prediction_results <- data.frame(PassengerID = test$PassengerId, Survived = predictions)
 
 write.csv(prediction_results, "R/submission.csv", row.names = FALSE)
